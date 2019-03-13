@@ -1,0 +1,21 @@
+version: "3"
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3000:3000"
+    volumes:
+      # don't try to map folder up against app node_modules insode the container
+      - /app/node_modules
+      - .:/app
+  tests:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes:
+      # don't try to map folder up against app node_modules insode the container
+      - /app/node_modules
+      - .:/app
+    command: ["npm", "run", "test"]
