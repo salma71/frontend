@@ -7,3 +7,19 @@ before_install:
 
 script:
   - docker run salmaeng/frontend npm run test -- --coverage
+
+# deployment to AWS configuration
+# travis-ci has a predefined of different providers or hosting services
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-2" #get from the url
+  app: "docker-react" #application name
+  env: "DockerReact-env"
+  bucket_name: "elasticbeanstalk-us-east-2-467412869746"
+  bucket_path: "docker-react" #same as application name
+  on:
+    branch: master #means whenever pushed code to master start deploying to the cloud
+  # add some API keys that will give access to our account over to Travis-CI
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: "$AWS_SECRET_KEY"
