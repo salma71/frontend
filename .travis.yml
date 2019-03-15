@@ -22,4 +22,4 @@ deploy:
   # add some API keys that will give access to our account over to Travis-CI
   access_key_id: $AWS_ACCESS_KEY
   secret_access_key:
-    secure: $AWS_SECRET_KEY
+    secure: $SECRET_KEY
